@@ -1,0 +1,9 @@
+{
+    "path" : "~/R/COVIDaz",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
