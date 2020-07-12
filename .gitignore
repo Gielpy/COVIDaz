@@ -8,7 +8,7 @@ _site
 Thumbs.db
 ehthumbs.db
 
-.Rproj
-.xlsx
+*.Rproj
+*.xlsx
 
 
