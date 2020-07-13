@@ -11,7 +11,9 @@ ggplot(delta.cases.m, aes(x=Date, y=Number.of.New.Cases, color=Age.Group, fill=A
   geom_line(aes(y=rollmean(Number.of.New.Cases,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
   ggtitle('Number of New Cases by Age Group - Arizona')+
   theme_bw()
-
+ggsave(paste0("Number of New Cases by Age Group "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### plot of new hospitilizations by age group
 delta.hosp <- covid.az[,c(1,33,35,37,39,41)]
@@ -26,7 +28,9 @@ ggplot(delta.hosp.m, aes(x=Date, y=Number.of.New.Hosp, color=Age.Group, fill=Age
   geom_line(aes(y=rollmean(Number.of.New.Hosp,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
   ggtitle('Number of New Hosp. by Age Group - Arizona')+
   theme_bw()
-
+ggsave(paste0("Number of New Hospitalizations by Age Group "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 #### plot of new Death by age group
 delta.Deaths <- covid.az[,c(1,23,25,27,29,31)]
 colnames(delta.Deaths) <- c('Date', 'Under20', '20-44', '45-54', '55-64', 'Over65')
@@ -40,3 +44,6 @@ ggplot(delta.Deaths.m, aes(x=Date, y=Number.of.New.Deaths, color=Age.Group, fill
   geom_line(aes(y=rollmean(Number.of.New.Deaths,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
   ggtitle('Number of New Deaths. by Age Group - Arizona')+
   theme_bw()
+ggsave(paste0("Number of New Deaths by Age Group "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))

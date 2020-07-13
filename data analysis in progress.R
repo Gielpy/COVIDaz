@@ -20,7 +20,9 @@ ggplot(covid.impact.m, aes(x=Date, y=value, fill=variable, color=variable))+
   theme_bw()+
   # labs(fill='Age Group')
   scale_fill_discrete(name = "Age Group", labels = c("Under 18 (Approx.)", "18-65", 'Over 65'))
-
+ggsave(paste0("Percentage of Population Testing Positive "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### percentage of cases hospitalized
 cases.hosp=NULL
@@ -65,10 +67,13 @@ ggplot()+
   geom_line(data=covid.az, aes(x=Date, y=rollmean(New.Cases,7,fill=NA), color='red'), size=1)+
   # geom_line(data=covid.az, aes(x=Date, y=rollmean(Positive.Tests,7,fill=NA), color='black'), size=1)+
   geom_line(data=covid.az, aes(x=Date, y=rollmean(New.Deaths, 7, fill=NA), color='green'), size=1)+
-  ylab('Current Hospitalizations / New Cases')+
-  scale_color_discrete(name = "Data series", labels = c("Hospitalized.Currently", "New Cases"))+
+  ylab('Current Hospitalizations / New Cases / New Deaths')+
+  scale_color_discrete(name = "Data series", labels = c("Hospitalized.Currently", "New Deaths", "New Cases"))+
+  ggtitle('Tracking Hospitalizations, New Cases, and New Deaths')+
   theme_bw()
-
+ggsave(paste0("Tracking Hospitilizations, New Cases, and New Deaths "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### plotting effects by age group
 test <- covid.az[1,]
@@ -95,3 +100,6 @@ ggplot(test.full.m, aes(x=`Age Group`, y=value, color=variable, fill=variable))+
   ylab('Number')+
   ggtitle('Breakdown by Age Group - Arizona')+
   theme_bw()
+ggsave(paste0("Breakdown by Age Group "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))

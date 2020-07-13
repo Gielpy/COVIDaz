@@ -14,7 +14,11 @@ ggplot(covid.az, aes(x=Date, y=New.Cases))+
   geom_bar(stat='identity', color='white', fill='#003153')+
   geom_line(aes(y=rollmean(New.Cases,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
   ggtitle('New Cases by Day - Arizona')+
+  # labs()+
   theme_bw()
+ggsave(paste0("New Cases by day "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
   
 #### plot of new inpatient change by day
 ggplot(covid.az, aes(x=Date, y=New.Inpatient.Change))+
@@ -22,6 +26,9 @@ ggplot(covid.az, aes(x=Date, y=New.Inpatient.Change))+
   geom_line(aes(y=rollmean(New.Inpatient.Change,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
   ggtitle('New Inpatient Change by Day - Arizona')+
   theme_bw()
+ggsave(paste0("New Inpatient Change by day "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### PCR positivity
 covid.az$percent.positive = (covid.az$New.Cases/covid.az$New.PCR)*100
@@ -30,7 +37,9 @@ ggplot(covid.az, aes(x=Date, y=percent.positive))+
   geom_line(aes(y=rollmean(percent.positive,7,fill=NA)), linetype='twodash', size=1.5, color='red')+
   ggtitle('PCR Percent Positive - Arizona')+
   theme_bw()
-
+ggsave(paste0("PCR Percent Positive by day "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### new deaths by day
 ggplot(covid.az, aes(x=Date, y=New.Deaths))+
@@ -38,7 +47,9 @@ ggplot(covid.az, aes(x=Date, y=New.Deaths))+
   geom_line(aes(y=rollmean(New.Deaths, 21, fill=NA)), linetype='twodash', size=1.5, color='red')+
   ggtitle('New Deaths by Day - Arizona')+
   theme_bw()
-
+ggsave(paste0("New Deaths by day "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### cases by age as a percent of total
 # covid.az$Cases.Under20 <- as.numeric(covid.az$Cases.Under20)
@@ -66,7 +77,9 @@ ggplot(covid.cases.m, aes(x=Date, y=value, fill=variable))+
   theme_bw()+
   # labs(fill='Age Group')
   scale_fill_discrete(name = "Age Group", labels = c("Under 20", "20-44", "45-54", '55-64', 'Over 65'))
-
+ggsave(paste0("Proportion of Cases by Age "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### deaths by age as a percent of total
 # covid.az$Deaths.Under20 <- as.numeric(covid.az$Deaths.Under20)
@@ -90,8 +103,11 @@ covid.Deaths.m <- melt(covid.Deaths, id.vars='Date', measure.vars=c('DU20pT', 'D
 ggplot(covid.Deaths.m, aes(x=Date, y=value, fill=variable))+
   geom_bar(stat='identity')+
   ylab('Percentage of Deaths by Age Group')+
-  theme_bw()
-
+  theme_bw()+
+  scale_fill_discrete(name = "Age Group", labels = c("Under 20", "20-44", "45-54", '55-64', 'Over 65'))
+ggsave(paste0("Proportion of Deaths by Age Group "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
 
 #### Hospitalizations by age as a percent of total
 # covid.az$hosp.Under20 <- as.numeric(covid.az$hosp.Under20)
@@ -119,3 +135,6 @@ ggplot(covid.hosp.m, aes(x=Date, y=value, fill=variable))+
   theme_bw()+
   # labs(fill='Age Group')
   scale_fill_discrete(name = "Age Group", labels = c("Under 20", "20-44", "45-54", '55-64', 'Over 65'))
+ggsave(paste0("Proportion of Hospitilizations by Age Group "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
