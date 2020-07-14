@@ -130,7 +130,7 @@ covid.hosp.m <- melt(covid.hosp, id.vars='Date', measure.vars=c('HU20pT', 'H20.4
 
 ggplot(covid.hosp.m, aes(x=Date, y=value, fill=variable))+
   geom_bar(stat='identity')+
-  ylab('Percentage of Cases by Age Group')+
+  ylab('Percentage of Hospitalizations by Age Group')+
   ggtitle('Proportion of Hospitalizations by Age - Arizona')+
   theme_bw()+
   # labs(fill='Age Group')
