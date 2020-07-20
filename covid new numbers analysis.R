@@ -47,3 +47,4 @@ ggplot(delta.Deaths.m, aes(x=Date, y=Number.of.New.Deaths, color=Age.Group, fill
 ggsave(paste0("Number of New Deaths by Age Group "
               , format(Sys.time(), "%Y-%m-%d")
               , ".png"))
+

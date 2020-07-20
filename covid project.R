@@ -138,3 +138,4 @@ ggplot(covid.hosp.m, aes(x=Date, y=value, fill=variable))+
 ggsave(paste0("Proportion of Hospitilizations by Age Group "
               , format(Sys.time(), "%Y-%m-%d")
               , ".png"))
+
