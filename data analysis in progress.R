@@ -103,3 +103,36 @@ ggplot(test.full.m, aes(x=`Age Group`, y=value, color=variable, fill=variable))+
 ggsave(paste0("Breakdown by Age Group "
               , format(Sys.time(), "%Y-%m-%d")
               , ".png"))
+
+
+
+info.by.date <- covid.az[,c(1,48:51)]
+# info.by.date$PCR.Date.of.Test<- as.numeric(info.by.date$PCR.Date.of.Test)
+ggplot(info.by.date, aes(x=Date, y=Cases.Date.of.Administration))+
+  geom_bar(stat='identity', color='white', fill='#003153')+
+  geom_line(aes(y=rollmean(Cases.Date.of.Administration,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
+  ggtitle('Cases by Date of Administration - Arizona')+
+  # labs()+
+  theme_bw()
+
+ggplot(info.by.date, aes(x=Date, y=PCR.Date.of.Test))+
+  geom_bar(stat='identity', color='white', fill='#003153')+
+  geom_line(aes(y=rollmean(PCR.Date.of.Test,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
+  ggtitle('PCR Tests by Date of Administration - Arizona')+
+  # labs()+
+  theme_bw()
+
+ggplot(info.by.date, aes(x=Date, y=delta.Cases.date))+
+  geom_bar(stat='identity', color='white', fill='#003153')+
+  geom_line(aes(y=rollmean(delta.Cases.date,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
+  ggtitle('Difference in Cases by Date of Administration - Arizona')+
+  # labs()+
+  theme_bw()
+
+ggplot(info.by.date, aes(x=Date, y=delta.PCR.date))+
+  geom_bar(stat='identity', color='white', fill='#003153')+
+  geom_line(aes(y=rollmean(delta.PCR.date,7,fill=NA)), linetype='twodash', color='red', size=1.5)+
+  ggtitle('Difference in Tests by Date of Administration - Arizona')+
+  # labs()+
+  theme_bw()
+
