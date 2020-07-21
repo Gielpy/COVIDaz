@@ -136,3 +136,34 @@ ggplot(info.by.date, aes(x=Date, y=delta.PCR.date))+
   # labs()+
   theme_bw()
 
+
+#### creation of a graph that displays the percentage of cases that are hospitalized and the percentage of hospitalizations that die, by age group
+test.full.m[6,4]=(test.full.m[6,3]/test.full.m[1,3])*100
+test.full.m[6,5]=(test.full.m[7,3]/test.full.m[2,3])*100
+test.full.m[7,4]=(test.full.m[7,3]/test.full.m[2,3])*100
+test.full.m[8,4]=(test.full.m[8,3]/test.full.m[3,3])*100
+test.full.m[9,4]=(test.full.m[9,3]/test.full.m[4,3])*100
+test.full.m[10,4]=(test.full.m[10,3]/test.full.m[5,3])*100
+test.full.m[11,4]=(test.full.m[11,3]/test.full.m[6,3])*100
+test.full.m[12,4]=(test.full.m[12,3]/test.full.m[7,3])*100
+test.full.m[13,4]=(test.full.m[13,3]/test.full.m[8,3])*100
+test.full.m[14,4]=(test.full.m[14,3]/test.full.m[9,3])*100
+test.full.m[15,4]=(test.full.m[15,3]/test.full.m[10,3])*100
+
+ggplot(test.full.m, aes(x=`Age Group`, y=V4, color=variable, fill=variable))+
+  geom_bar(stat='identity', position=position_dodge())+
+  ylim(0,100)+
+  ylab('Percentage')+
+  ggtitle('Breakdown by Age Group - Arizona')+
+  theme_bw()
+
+#### school age kids, data tracking
+ggplot()+
+  geom_line(data=covid.az, aes(x=Date, y=rollmean(delta.Cases.Under20,7,fill=NA), color='#003153'), size=1)+
+  geom_line(data=covid.az, aes(x=Date, y=rollmean(delta.Hospitalizations.Under20,7,fill=NA), color='red'), size=1)+
+  # geom_line(data=covid.az, aes(x=Date, y=rollmean(Positive.Tests,7,fill=NA), color='black'), size=1)+
+  geom_line(data=covid.az, aes(x=Date, y=rollmean(delta.Deaths.Under20, 7, fill=NA), color='green'), size=1)+
+  ylab('Difference in New Cases / Hospitalizations / Deaths')+
+  scale_color_discrete(name = "Data series", labels = c("Cases", "Deaths", "Hospitalizations"))+
+  ggtitle('Tracking Cases, Hospitalizations, and Deaths in School Age Kids - Arizona')+
+  theme_bw()

@@ -2,8 +2,8 @@ library(tidyverse)
 library(zoo)
 
 az.pop = 7189000
-az.pop.U18 = 2042000
-az.pop.18to65=3853000
+az.pop.U18 = 1617500
+az.pop.18to65=4277500
 az.pop.O65 = 1294000
 
 covid.az <- read.csv('covid data.csv', header=T)
