@@ -26,11 +26,11 @@ ggsave(paste0("Percentage of Population Testing Positive "
 
 #### percentage of cases hospitalized
 cases.hosp=NULL
-cases.hosp$HU20pT = (covid.az$Hospitilizations.Under20/covid.az$Hospitilizations)*100
-cases.hosp$H20.44pT = (covid.az$Hospitilizations.20.44/covid.az$Hospitilizations)*100
-cases.hosp$H45.54pT = (covid.az$Hospitilizations.45.54/covid.az$Hospitilizations)*100
-cases.hosp$H55.64pT = (covid.az$Hospitilizations.55.64/covid.az$Hospitilizations)*100
-cases.hosp$HO65pT = (covid.az$Hospitilizations.Over65/covid.az$Hospitilizations)*100
+cases.hosp$HU20pT = (covid.az$Hospitalizations.Under20/covid.az$Hospitalizations)*100
+cases.hosp$H20.44pT = (covid.az$Hospitalizations.20.44/covid.az$Hospitalizations)*100
+cases.hosp$H45.54pT = (covid.az$Hospitalizations.45.54/covid.az$Hospitalizations)*100
+cases.hosp$H55.64pT = (covid.az$Hospitalizations.55.64/covid.az$Hospitalizations)*100
+cases.hosp$HO65pT = (covid.az$Hospitalizations.Over65/covid.az$Hospitalizations)*100
 cases.hosp$Date <- covid.az$Date
 cases.hosp <- data.frame(cases.hosp)
 
@@ -49,8 +49,8 @@ ggplot(cases.hosp.m, aes(x=Date, y=value, fill=variable, color=variable))+
 
 
 #### plot of hospitalizations by day rolling average
-covid.az.m <- melt(covid.az, id.vars='Date', measure.vars = c('Hospitilizations.Under20', 'Hospitilizations.20.44', 'Hospitilizations.45.54',
-                                                              'Hospitilizations.55.64', 'Hospitilizations.Over65'))
+covid.az.m <- melt(covid.az, id.vars='Date', measure.vars = c('Hospitalizations.Under20', 'Hospitalizations.20.44', 'Hospitalizations.45.54',
+                                                              'Hospitalizations.55.64', 'Hospitalizations.Over65'))
 
 
 ggplot(covid.az.m, aes(x=Date, y=value, color=variable))+
@@ -71,7 +71,7 @@ ggplot()+
   scale_color_discrete(name = "Data series", labels = c("Hospitalized.Currently", "New Deaths", "New Cases"))+
   ggtitle('Tracking Hospitalizations, New Cases, and New Deaths')+
   theme_bw()
-ggsave(paste0("Tracking Hospitilizations, New Cases, and New Deaths "
+ggsave(paste0("Tracking Hospitalizations, New Cases, and New Deaths "
               , format(Sys.time(), "%Y-%m-%d")
               , ".png"))
 
@@ -79,7 +79,7 @@ ggsave(paste0("Tracking Hospitilizations, New Cases, and New Deaths "
 test <- covid.az[1,]
 test.cases.m <- melt(test, id.vars='Date', measure.vars=c('Cases.Under20','Cases.20.44', 'Cases.45.54', 'Cases.55.64', 'Cases.Over65'))
 test.Deaths.m <- melt(test, id.vars='Date', measure.vars=c('Deaths.Under20','Deaths.20.44', 'Deaths.45.54', 'Deaths.55.64', 'Deaths.Over65'))
-test.Hospitalizations.m <- melt(test, id.vars='Date', measure.vars=c('Hospitilizations.Under20','Hospitilizations.20.44', 'Hospitilizations.45.54', 'Hospitilizations.55.64', 'Hospitilizations.Over65'))
+test.Hospitalizations.m <- melt(test, id.vars='Date', measure.vars=c('Hospitalizations.Under20','Hospitalizations.20.44', 'Hospitalizations.45.54', 'Hospitalizations.55.64', 'Hospitalizations.Over65'))
 colnames(test.cases.m)<- c('Date', 'Age Group', 'Cases')
 colnames(test.Deaths.m)<- c('Date', 'Age Group', 'Deaths')
 colnames(test.Hospitalizations.m)<- c('Date', 'Age Group', 'Hospitalizations')

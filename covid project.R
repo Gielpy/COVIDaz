@@ -117,11 +117,11 @@ ggsave(paste0("Proportion of Deaths by Age Group "
 # covid.az$Hospitalizations.Over65 <- as.numeric(covid.az$Hospitalizations.Over65)
 
 covid.hosp=NULL
-covid.hosp$HU20pT = (covid.az$Hospitilizations.Under20/covid.az$Hospitilizations)*100
-covid.hosp$H20.44pT = (covid.az$Hospitilizations.20.44/covid.az$Hospitilizations)*100
-covid.hosp$H45.54pT = (covid.az$Hospitilizations.45.54/covid.az$Hospitilizations)*100
-covid.hosp$H55.64pT = (covid.az$Hospitilizations.55.64/covid.az$Hospitilizations)*100
-covid.hosp$HO65pT = (covid.az$Hospitilizations.Over65/covid.az$Hospitilizations)*100
+covid.hosp$HU20pT = (covid.az$Hospitalizations.Under20/covid.az$Hospitalizations)*100
+covid.hosp$H20.44pT = (covid.az$Hospitalizations.20.44/covid.az$Hospitalizations)*100
+covid.hosp$H45.54pT = (covid.az$Hospitalizations.45.54/covid.az$Hospitalizations)*100
+covid.hosp$H55.64pT = (covid.az$Hospitalizations.55.64/covid.az$Hospitalizations)*100
+covid.hosp$HO65pT = (covid.az$Hospitalizations.Over65/covid.az$Hospitalizations)*100
 covid.hosp$Date <- covid.az$Date
 covid.hosp <- data.frame(covid.hosp)
 
@@ -135,7 +135,7 @@ ggplot(covid.hosp.m, aes(x=Date, y=value, fill=variable))+
   theme_bw()+
   # labs(fill='Age Group')
   scale_fill_discrete(name = "Age Group", labels = c("Under 20", "20-44", "45-54", '55-64', 'Over 65'))
-ggsave(paste0("Proportion of Hospitilizations by Age Group "
+ggsave(paste0("Proportion of Hospitalizations by Age Group "
               , format(Sys.time(), "%Y-%m-%d")
               , ".png"))
 
