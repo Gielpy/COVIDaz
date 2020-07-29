@@ -18,6 +18,7 @@ ggsave(paste0("Number of New Cases by Age Group "
 #### plot of new hospitilizations by age group
 delta.hosp <- covid.az[,c(1,33,35,37,39,41)]
 colnames(delta.hosp) <- c('Date', 'Under20', '20-44', '45-54', '55-64', 'Over65')
+delta.hosp<- delta.hosp[-c(6:7),] ####this line needs to be updated daily to exclude the data from 7-23 and 7-24
 delta.hosp.m <- melt(delta.hosp, id.vars='Date', measure.vars=c('Under20', '20-44', '45-54', '55-64', 'Over65'), na.rm=T)
 colnames(delta.hosp.m)<-c('Date', 'Age.Group', 'Number.of.New.Hosp')
 
