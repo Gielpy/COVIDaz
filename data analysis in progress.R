@@ -167,3 +167,4 @@ ggplot()+
   scale_color_discrete(name = "Data series", labels = c("Cases", "Deaths", "Hospitalizations"))+
   ggtitle('Tracking Cases, Hospitalizations, and Deaths in School Age Kids - Arizona')+
   theme_bw()
+

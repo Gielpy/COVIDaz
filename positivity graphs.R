@@ -23,3 +23,10 @@ q<-ggplot(covid.az[-c(1:7),], aes(x=Date))+
   theme_bw()
 require(gridExtra)
 grid.arrange(p, q, ncol=2)
+ggsave(paste0("Tests, Cases, and Positivity "
+              , format(Sys.time(), "%Y-%m-%d")
+              , ".png"))
+
+ggplot(covid.az, aes(x=Date))+
+  geom_line(aes(y=rollmean(New.Inpatient.Change,7,fill=NA)), linetype='solid', color='#003153', size=1.5)+
+  theme_bw()
